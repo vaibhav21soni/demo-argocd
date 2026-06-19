@@ -14,7 +14,13 @@ metadata:
     alb.ingress.kubernetes.io/healthcheck-path: /api/healthz
     alb.ingress.kubernetes.io/healthcheck-port: "traffic-port"
     alb.ingress.kubernetes.io/target-group-attributes: stickiness.enabled=false
+    # Replace the following placeholders with your values:
+    # - subnets: comma-separated public subnet IDs for the ALB
+    # - certificate-arn: ARN of an ACM certificate for your domain (optional, required for HTTPS)
     alb.ingress.kubernetes.io/subnets: "<your-public-subnet-ids>"
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80},{"HTTPS":443}]'
+    alb.ingress.kubernetes.io/certificate-arn: "<your-acm-certificate-arn>"
+    alb.ingress.kubernetes.io/ssl-redirect: '443'
 spec:
   ingressClassName: alb
   rules:
@@ -33,4 +39,4 @@ spec:
               service:
                 name: mern-backend
                 port:
-                  number: 4000
+                  number: 3000
