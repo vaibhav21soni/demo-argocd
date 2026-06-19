@@ -34,7 +34,10 @@ spec:
             - name: PORT
               value: "3000"
             - name: DB
-              value: mongodb://mernuser:S3cureP%40ssw0rd%21@mongodb-headless.mern.svc.cluster.local:27017/mern?authSource=admin
+              valueFrom:
+                secretKeyRef:
+                  name: mongodb-credentials
+                  key: mongodb-uri
             - name: CORS
               value: "true"
           resources:
@@ -45,18 +48,16 @@ spec:
               cpu: 400m
               memory: 512Mi
           readinessProbe:
-            httpGet:
-              path: /api/healthz
+            tcpSocket:
               port: http
-            initialDelaySeconds: 20
+            initialDelaySeconds: 10
             periodSeconds: 10
             timeoutSeconds: 3
             failureThreshold: 3
           livenessProbe:
-            httpGet:
-              path: /api/healthz
+            tcpSocket:
               port: http
-            initialDelaySeconds: 30
+            initialDelaySeconds: 20
             periodSeconds: 20
             timeoutSeconds: 3
             failureThreshold: 3
