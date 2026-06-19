@@ -23,7 +23,7 @@ spec:
         fsGroup: 1000
       containers:
         - name: backend
-          image: vaibhavsoni21/mern-backend:a2a49ee
+          image: vaibhavsoni21/mern-backend:d56be00
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3000
