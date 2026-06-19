@@ -34,7 +34,7 @@ spec:
             - name: PORT
               value: "3000"
             - name: DB
-              value: mongodb://admin:password@mongodb-headless.mern.svc.cluster.local:27017/mern-crud?authSource=admin
+              value: mongodb://mernuser:S3cureP@ssw0rd!@mongodb-headless.mern.svc.cluster.local:27017/mern?authSource=admin
             - name: CORS
               value: "true"
           resources:
