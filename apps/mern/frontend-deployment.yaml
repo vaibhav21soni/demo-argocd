@@ -23,7 +23,7 @@ spec:
         fsGroup: 1000
       containers:
         - name: frontend
-          image: vaibhavsoni21/mern-frontend:d56be00
+          image: vaibhavsoni21/mern-frontend:df0b833
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 4200
