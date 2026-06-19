@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mongodb-pvc-gp2
+  namespace: mern
+  labels:
+    app.kubernetes.io/name: mongodb
+    app.kubernetes.io/part-of: mern-stack
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: gp2
+  resources:
+    requests:
+      storage: 10Gi

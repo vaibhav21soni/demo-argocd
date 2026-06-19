@@ -70,16 +70,7 @@ spec:
               cpu: 400m
               memory: 1Gi
       terminationGracePeriodSeconds: 60
-  volumeClaimTemplates:
-    - metadata:
-        name: data
-        labels:
-          app.kubernetes.io/part-of: mern-stack
-      spec:
-        accessModes:
-          - ReadWriteOnce
-        storageClassName: gp2
-        volumeMode: Filesystem
-        resources:
-          requests:
-            storage: 10Gi
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: mongodb-pvc-gp2
