@@ -17,7 +17,7 @@ metadata:
     # Public subnet IDs where the ALB will be created (comma-separated)
     alb.ingress.kubernetes.io/subnets: "subnet-0da0f5edbd4b7d826,subnet-07495dbc349096b2e"
     # Using HTTP only for now; add certificate arn and HTTPS listen-port if you want HTTPS
-    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80}]'
+    alb.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   ingressClassName: alb
   rules:
