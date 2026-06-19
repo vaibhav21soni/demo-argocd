@@ -21,11 +21,13 @@ spec:
     spec:
       securityContext:
         runAsNonRoot: false
-        fsGroup: 999
+        runAsUser: 0
       containers:
         - name: mongodb
           image: mongo:6.0
           imagePullPolicy: IfNotPresent
+          args:
+            - "--bind_ip_all"
           ports:
             - containerPort: 27017
               name: mongodb
@@ -45,13 +47,19 @@ spec:
                 secretKeyRef:
                   name: mongodb-credentials
                   key: mongodb-database
+            - name: MONGODB_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mongodb-credentials
+                  key: mongodb-root-password
           volumeMounts:
             - name: data
               mountPath: /data/db
+          
           securityContext:
-            runAsUser: 999
-            runAsNonRoot: true
-            allowPrivilegeEscalation: false
+            runAsNonRoot: false
+            runAsUser: 0
+            allowPrivilegeEscalation: true
           readinessProbe:
             tcpSocket:
               port: mongodb
