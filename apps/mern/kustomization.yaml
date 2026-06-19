@@ -10,6 +10,4 @@ resources:
   - frontend-service.yaml
   - frontend-deployment.yaml
   - ingress.yaml
-commonLabels:
-  app.kubernetes.io/part-of: mern-stack
 namespace: mern

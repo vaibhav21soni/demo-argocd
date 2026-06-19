@@ -12,6 +12,7 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: mongodb
+      app.kubernetes.io/part-of: mern-stack
   template:
     metadata:
       labels:
@@ -63,19 +64,22 @@ spec:
             failureThreshold: 3
           resources:
             requests:
-              cpu: 250m
-              memory: 1Gi
+              cpu: 200m
+              memory: 700Mi
             limits:
-              cpu: 500m
-              memory: 1.5Gi
+              cpu: 400m
+              memory: 1Gi
       terminationGracePeriodSeconds: 60
   volumeClaimTemplates:
     - metadata:
         name: data
+        labels:
+          app.kubernetes.io/part-of: mern-stack
       spec:
         accessModes:
           - ReadWriteOnce
-        storageClassName: gp3
+        storageClassName: gp2
+        volumeMode: Filesystem
         resources:
           requests:
             storage: 10Gi

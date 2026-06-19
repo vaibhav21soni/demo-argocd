@@ -11,6 +11,7 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: mern-backend
+      app.kubernetes.io/part-of: mern-stack
   template:
     metadata:
       labels:
@@ -33,17 +34,16 @@ spec:
             - name: PORT
               value: "3000"
             - name: DB
-              value: mongodb://admin:password@mongodb:27017/mern-crud?authSource=admin
+              value: mongodb://admin:password@mongodb-headless.mern.svc.cluster.local:27017/mern-crud?authSource=admin
             - name: CORS
               value: "true"
           resources:
             requests:
-              cpu: 200m
-              memory: 512Mi
-              
+              cpu: 150m
+              memory: 300Mi
             limits:
-              cpu: 600m
-              memory: 768Mi
+              cpu: 400m
+              memory: 512Mi
           readinessProbe:
             httpGet:
               path: /api/healthz
